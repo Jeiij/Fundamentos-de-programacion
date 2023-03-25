@@ -49,7 +49,7 @@ void main(){
         do
             {
             printf("\n Ingrese la fecha de nacimiento:");
-            printf("\n Día:\t");
+            printf("\n Dia:\t");
             scanf("%d",&dd);
             fflush(stdin);
             printf("\n Mes:\t");
