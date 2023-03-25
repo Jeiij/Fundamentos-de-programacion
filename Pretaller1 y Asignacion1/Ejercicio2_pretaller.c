@@ -38,7 +38,7 @@ void main(){
             printf("\n Año:\t");
             scanf("%d",&aaa);
             fflush(stdin);
-            if(aaa>1900&&ma>=1&&ma<=12&&da>=1&&da<=31){
+            if(aaa>1900&&aaa<2300&&ma>=1&&ma<=12&&da>=1&&da<=31){
                 band=false;
                 if((ma==4||ma==6||ma==9||ma==11)&&da>30){
                     band=true;
@@ -92,7 +92,7 @@ void main(){
             printf("\n Año:\t");
             scanf("%d",&aa);
             fflush(stdin);
-            if(aa>1900&&mm>=1&&mm<=12&&dd>=1&&dd<=31){
+            if(aa>1900&&aa<2300&&mm>=1&&mm<=12&&dd>=1&&dd<=31){
                 band=false;
                 if((mm==4||mm==6||mm==9||mm==11)&&dd>30){
                     band=true;
@@ -150,4 +150,4 @@ void main(){
     printf(" \n Mujeres: %d\n Hombres: %d\n Personas Mayores: %d\n Personas Menores: %d\n",cont_f,cont_m,mayores,menores);
     printf("\n Personas 15@ de descuento: %d\n Personas30  de descuento: %d\n",des_quince,des_treinta);
 
-}  
+}
