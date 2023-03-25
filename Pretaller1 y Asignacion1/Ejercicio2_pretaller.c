@@ -6,10 +6,10 @@ int edades(int aa,int mm,int dd, int da, int ma, int aaa){
         int edad=0;
 
         edad = aaa-aa;
-        if(mm > ma){
+        if(ma > mm){
             edad--;
         }else if(mm == ma){
-            }if(dd > da){
+            }if(da > dd){
                edad--;
             }
         return edad;
@@ -125,7 +125,7 @@ void main(){
 
         //verificar descuentos,con edades y el dato de las cedula
 
-        if ((edades(aa,mm,dd,da,ma,aaa)>17)){
+        if ((edades(aa,mm,dd,da,ma,aaa)>=18)){
             mayores++;
             //verificar si tiene descuento o no
             if ((edades(aa,mm,dd,da,ma,aaa)>60) && (j==1)){
