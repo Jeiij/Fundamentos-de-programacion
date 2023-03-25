@@ -2,10 +2,10 @@
 #include <stdbool.h>
 #include <ctype.h>
 //me calcula la edad
-int edades(int aa,int mm,int dd){
-    int edad,da=24,ma=3,aaaa=2023;
-        
-        edad = aaaa-aa;
+int edades(int aa,int mm,int dd, int da, int ma, int aaa){
+        int edad=0;
+
+        edad = aaa-aa;
         if(mm > ma){
             edad--;
         }else if(mm == ma){
@@ -18,13 +18,48 @@ int edades(int aa,int mm,int dd){
 void main(){
     int i,n,j,
         dd,mm,aa,
+        da,ma,aaa,
         cd,cont_m=0,cont_f=0,
         mayores=0,menores=0,
         des_quince=0,des_treinta=0;
     bool band;    
     
+    //pediremos la fecha actual
+    band=true;
+    do
+            {
+            printf("\n Ingrese la fecha de actual:");
+            printf("\n Dia:\t");
+            scanf("%d",&da);
+            fflush(stdin);
+            printf("\n Mes:\t");
+            scanf("%d",&ma);
+            fflush(stdin);
+            printf("\n Año:\t");
+            scanf("%d",&aaa);
+            fflush(stdin);
+            if(aaa>1900&&ma>=1&&ma<=12&&da>=1&&da<=31){
+                band=false;
+                if((ma==4||ma==6||ma==9||ma==11)&&da>30){
+                    band=true;
+                }else if(ma==2&&da>29){
+                    band=true;
+                }
+               
+            
+            }else{
+                band=true;
+            }
+            }
+       
+
+        while(band);
+
+    
     //pediremos el numero de citas disponibles para cada clientes
+    
     printf("\ningrese la cantidad de citas que se va a registrar el dia de hoy: ");
+
     scanf("%d", &n);
     
     for (i=1;i<=n;i++){
@@ -44,7 +79,6 @@ void main(){
             cont_f++;
         }
         //menu de validacion fecha de nacimiento
-
         band=true;
         do
             {
@@ -91,10 +125,10 @@ void main(){
 
         //verificar descuentos,con edades y el dato de las cedula
 
-        if ((edades(aa,mm,dd)>17)){
+        if ((edades(aa,mm,dd,da,ma,aaa)>17)){
             mayores++;
             //verificar si tiene descuento o no
-            if ((edades(aa,mm,dd)>60) && (j==1)){
+            if ((edades(aa,mm,dd,da,ma,aaa)>60) && (j==1)){
                 printf("\n---------Felicidades tienes un descuento del 30-Porciento!!!!!--------");
                 des_treinta++;
             }
