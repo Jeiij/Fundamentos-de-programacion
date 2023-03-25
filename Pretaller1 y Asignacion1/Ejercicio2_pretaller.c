@@ -19,7 +19,7 @@ void main(){
     int i,n,j,
         dd,mm,aa,
         cd,cont_m=0,cont_f=0,
-        mayores=0,menores=0,descuento=0,
+        mayores=0,menores=0,
         des_quince=0,des_treinta=0;
     bool band;    
     
