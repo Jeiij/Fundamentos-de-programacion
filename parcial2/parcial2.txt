@@ -1,0 +1,149 @@
+#include <malloc.h>
+#include "stdio.h"
+#define tam 1000
+#include <unistd.h>
+
+
+struct alumno{
+   char nombre[30];
+   int n1,n2,n3;
+   float promedio;
+};
+
+
+struct alumno vector_alumno[tam];
+struct alumno aux[0];
+void cargar_archivo_vector(FILE *ps ,int *dim); // lee los datos del archivo y lo pasamosa  un registro de vectores
+void calcular_promedio(struct alumno[],int dim); // apartir del vector lleno, agregamos el promedio a la estructura la calculamos y se la asignamos al registro correspendiente
+void ordenar_promedios(struct alumno[],int dim); // se orden el vector de estructura por promedios
+void subir_archivo(struct alumno[],int dim); // solo se sube la data que se necesite al archivo en este caso, posicion, nombre y promedio, como el vector esta ordenado no necesitamos hacer mas nada si no abrir un txt en modo w
+void llenar_matriz_mostrar(struct alumno[],char name[],float mat[][2]); // llenaremos en  una matriz de flotantes con posicion y promedio y en paralelo estara el registro con el nombre ordenado se usa el mismo indice
+
+void main(){
+    int dim;
+    FILE *ps;
+    char *name[30];
+    float mat[2][2];
+    cargar_archivo_vector("notas_alumnos.dat",&dim);
+
+    calcular_promedio(vector_alumno,dim);
+    ordenar_promedios(vector_alumno,dim);
+    subir_archivo(vector_alumno,dim);
+    llenar_matriz_mostrar(vector_alumno,name,mat);
+
+
+}
+
+void cargar_archivo_vector(FILE *ps,int *dim){
+    int i=0;
+
+    ps= fopen("notas_alumnos.dat","r");
+
+    if (ps!=NULL){
+        printf("abierto correctamente\n");
+        printf("datos del archivo\n");
+        while(fscanf(ps,"%s %d %d %d",&vector_alumno[i].nombre,&vector_alumno[i].n1,&vector_alumno[i].n2,&vector_alumno[i].n3) != EOF){
+            printf("%s %d %d %d\n",vector_alumno[i].nombre,vector_alumno[i].n1,vector_alumno[i].n2,vector_alumno[i].n3);
+
+            i=i+1;
+
+        }
+
+
+    }
+    fclose(ps);
+    *dim=i;
+
+}
+
+void calcular_promedio(struct alumno[],int dim){
+    int i;
+
+    printf("\npromedios de los estudiantes desordenados: \n");
+    for (i=0;i<dim;i++){
+
+        vector_alumno[i].promedio = ((vector_alumno[i].n1 + vector_alumno[i].n2 + vector_alumno[i].n3) / 3);
+
+        printf("\n%s %f\n",vector_alumno[i].nombre,vector_alumno[i].promedio);
+    }
+
+}
+
+void ordenar_promedios(struct alumno[],int dim){
+
+
+    int j,i,indice;
+
+    for (i=0;i<dim;i++){
+        indice=i;
+        for (j=i+1;j<dim;j++){
+            if (vector_alumno[j].promedio>vector_alumno[indice].promedio) {
+                indice = j;
+            }
+
+
+        }
+
+        if (indice != i)
+
+        {
+            aux[0]= vector_alumno[indice];
+            vector_alumno[indice]=vector_alumno[i];
+
+            vector_alumno[i] = aux[0];
+        }
+//
+
+    }
+
+
+
+}
+
+void subir_archivo(struct alumno[],int dim){
+    FILE *pf;
+    int j,i,indice;
+
+    pf= fopen("salida.dat","w");
+
+    if (pf!=NULL) {
+
+        for (i = 0; i < dim; i++) {
+            fprintf(pf, "%d %s %f\n",i+1,vector_alumno[i].nombre,  vector_alumno[i].promedio);
+        }
+    }
+
+
+
+}
+
+void llenar_matriz_mostrar(struct alumno[],char name[],float mat[][2]){
+    int f,c,i=0,r=0;
+    //llenado
+    for (f=0;f<3;f++) {
+        for (c = 0; c < 3; c++) {
+
+            if (f == 0) {
+                i = i + 1;
+                mat[f][c] = i;
+
+            } else if (f == 1) {
+                mat[f][c] = vector_alumno[r].promedio;
+                r=r+1;
+
+
+            }
+
+        }
+    }
+
+//visualizar matriz + vector parelelo
+    printf(" \nesta es la matriz: \n");
+    for(f=0;f<3;f++)
+    {
+        printf(" %1.f",mat[0][f]);
+        printf(" %s",vector_alumno[f].nombre);
+        printf("% 1.f\t",mat[1][f]);
+        printf("\n");
+    }
+}
