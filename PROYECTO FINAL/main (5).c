@@ -27,11 +27,11 @@ char vector_motivo[4][30]={"Traslado","Renuncia","Despido","Otro"};
 int dim;
 
 //Prototipos de funciones
-void leer_datos_archivo(FILE *pf,int *dim);                                       // CON ESTA FUNCION, LEEMOS EL ARCHIVO PRINCIPAL, Y NOS RETORNA CUANTAS LINEAS HAY, ESO SERIA LA DIMENSION. ESTA FUNCION TAMBIEN PASA TODOS LOS DATOS DEL ARCHIVO A UN VECTOR
+void leer_datos_archivo(FILE *pf,int *dim);                                       // CON ESTE PROCEDIMIENTO, LEEMOS EL ARCHIVO PRINCIPAL, Y NOS RETORNA CUANTAS LINEAS HAY, ESO SERIA LA DIMENSION. ESTA FUNCION TAMBIEN PASA TODOS LOS DATOS DEL ARCHIVO A UN VECTOR
 void mostrar_menu();                                                              // ESTE ES EL TIPICO MENU CON SWITCH
-void crear_trabajador(struct CLIENTE vector_archivo[],int* dim);                  // ESTA FUNCION RECIBE COMO PARAMETROS EL VECTOR QUE SE LEYO CON LA FUNCION (LEER LINEAS), Y LA DIMENSION QUE RETORNO DICHA FUNCION TAMBIEN. A PARTIR DE ALLI SE PIDEN DATOS PARA IR AGREANDO AL VECTOR
+void crear_trabajador(struct CLIENTE vector_archivo[],int* dim);                  // ESTE PROCEDIMIENTO RECIBE COMO PARAMETROS EL VECTOR QUE SE LEYO CON EL PROCEDIMIENTO (LEER LINEAS), Y LA DIMENSION QUE RETORNO DICHA FUNCION TAMBIEN. A PARTIR DE ALLI SE PIDEN DATOS PARA IR AGREANDO AL VECTOR
 void filtrar_cedula(struct CLIENTE vector_archivo[],int dim);                     // ESTO ES PARA FILTRAR POR NUMERO DE CEDULA Y ENSE;AR LA INFORMACION
-int mostrar_posicion_cedula(struct CLIENTE vector_archivo[],int* dim, int c_i);   // ESTA FUNCION SE USA EN VARIAS FUNCIONES, NOS RETORNA LA POSICION DE UNA CEDULA BUSCADA, YA SEA PARA MODIFICAR, ELIMINAR O MOSTRAR.
+int mostrar_posicion_cedula(struct CLIENTE vector_archivo[],int* dim, int c_i);   // ESTE PROCEDIMIENTO SE USA EN VARIAS FUNCIONES, NOS RETORNA LA POSICION DE UNA CEDULA BUSCADA, YA SEA PARA MODIFICAR, ELIMINAR O MOSTRAR.
 void departamento(struct CLIENTE vector_archivo[],int dim);                       // ESTA RECORRE EL VECTOR Y FILTRA POR DEPARTAMENTO
 void cargo(struct CLIENTE vector_archivo[],int dim);                              // IGUAL QUE EN DEPARTAMENTO(), PERO FILTRA POR CARGO
 void mayor_sueldo(struct CLIENTE vector_archivo[],int dim);                       // MUESTRA EL EMPLEADO CON EL MAYOR SUELDO
